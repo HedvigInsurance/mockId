@@ -1,0 +1,16 @@
+micronaut:
+    application:
+        name: mockId
+                
+#Uncomment to set server port
+    server:
+        port: ${random.port}
+
+ 
+endpoints:
+    sensitive: false
+    routes:
+        enabled: true
+        sensitive: false
+    info:
+        sensitive: false

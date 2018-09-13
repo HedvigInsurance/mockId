@@ -1,0 +1,38 @@
+micronaut:
+  application:
+    name: mockId
+                
+#Uncomment to set server port
+  server:
+      port: 1337
+
+ 
+endpoints:
+  sensitive: false
+  routes:
+    enabled: true
+    sensitive: false
+  info:
+    sensitive: false
+    enabled: true
+  beans:
+    sensitive: false
+    enabled: true
+
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/mock_id
+    username: postgres
+    password: hedvig
+    platform: POSTGRESQL
+
+jpa:
+  default:
+    packages-to-scan:
+      - "mockid.bankId"
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect

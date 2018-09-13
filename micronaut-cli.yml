@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: mockid
+---
+testFramework: spek
+sourceLanguage: kotlin
