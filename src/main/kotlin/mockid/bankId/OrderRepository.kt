@@ -5,13 +5,12 @@ import java.util.*
 import javax.persistence.*
 
 
-
 @Prototype
 open class OrderRepository(@PersistenceContext private val entityManager: EntityManager) {
 
     open fun createOrder(personNumber: String, ipAddress: String): BankIdOrder {
 
-        val order = BankIdOrder(autoStartToken = UUID.randomUUID().toString(), type = OrderType.AUTH, personalNumber = personNumber, ipAddress = ipAddress)
+        val order = BankIdOrder(id = UUID.randomUUID().toString(), autoStartToken = UUID.randomUUID().toString(), type = OrderType.AUTH, personalNumber = personNumber, ipAddress = ipAddress, status = OrderState.pending)
 
         return order
     }
@@ -20,14 +19,28 @@ open class OrderRepository(@PersistenceContext private val entityManager: Entity
         return entityManager.find(BankIdOrder::class.java, id)
     }
 
-    open fun save(order:BankIdOrder) {
+    open fun save(order: BankIdOrder) {
         entityManager.persist(order)
+    }
+
+    fun findByAutostartToken(autostartToken: String): BankIdOrder? {
+        val query = entityManager.createQuery("from mockid.bankId.BankIdOrder where autostarttoken = :autostarttoken")
+        query.setParameter("autostarttoken", autostartToken)
+        val result = query.singleResult
+        return result as? BankIdOrder
+    }
+
+    fun findActiveOrders(): List<BankIdOrder> {
+        val query = entityManager.createQuery("from mockid.bankId.BankIdOrder where status = 'pending'", BankIdOrder::class.java)
+
+        val result = query.resultList
+        return result
     }
 
 }
 
 enum class OrderType {
-AUTH, SIGN
+    AUTH, SIGN
 }
 
 enum class OrderState {
@@ -51,12 +64,3 @@ enum class HintCodes {
 }
 
 
-@Entity(name ="bankid_order")
-data class BankIdOrder(
-        @Id @GeneratedValue(generator = "uuid")
-        val id: String? = null,
-        val autoStartToken: String? = null,
-        @Enumerated(EnumType.ORDINAL)
-        val type: OrderType,
-        val personalNumber: String,
-        val ipAddress: String = "")

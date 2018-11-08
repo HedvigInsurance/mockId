@@ -1,7 +1,11 @@
 micronaut:
   application:
     name: mockId
-                
+
+  router.static-resources.*.paths: "file:src/main/resources/public"
+  #views.folder: "src/main/resources/views"
+  views.thymeleaf.cacheable: false
+  views.thymeleaf.cache-ttlms: 10
 #Uncomment to set server port
   server:
       port: 1337

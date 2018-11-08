@@ -1,5 +1,0 @@
-package mockid
-
-
-class BankIdSession {
-}
