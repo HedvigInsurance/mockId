@@ -24,9 +24,7 @@
     <div class="inner">
       <h3 class="masthead-brand">MockID</h3>
       <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="#">Home</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Contact</a>
+        <a class="nav-link active" href="/h/">Session</a>
       </nav>
     </div>
   </header>
@@ -34,37 +32,35 @@
   <main role="main" class="inner cover">
 
     <div class="container">
-      <div class="card w-75" style="width: 18rem;">
-        <div class="card-header">Sign</div>
-        <div class="card-body">
+      <div class="row justify-content-center">
+        <div class="card w-75" style="width: 18rem;">
+          <div class="card-header">Sign</div>
+          <div class="card-body">
 
-          <p class="card-text alert alert-dark" th:text="${userVisibleData}">This is some nice sign
-            text</p>
-          <form method="post">
-            <input type="hidden" name="autostarttoken" th:value="${autostarttoken}"
-                   value="autostartToken">
-            <fieldset class="form-group">
-              <label>Custom name</label>
-              <input type="text" name="firstName" value="Firstname" class="form-control"/>
-              <input type="text" name="lastName" value="Lastname" class="form-control"/>
-            </fieldset>
-            <fieldset class="form-group">
-              <label>Action</label>
-              <select name="action" class="form-control">
-                <option th:each="action : ${actions}" th:value="${action.name}"
-                        th:selected="${action.selected}" th:text="${action.text}">Sign
-                </option>
-                <!--<option value="userCancel">Abort</option>
-                <option value="expiredTransaction">Expired transaction</option>
-                <option value="certificateErr">Certificate error</option>
-                <option value="cancelled">Cancelled</option>
-                <option value="startFailed">Start failed</option>-->
-              </select>
-            </fieldset>
-            <div class="text-center">
-              <button class="btn btn-success" type="submit">Submit</button>
-            </div>
-          </form>
+            <p class="card-text alert alert-dark" th:text="${userVisibleData}">This is some nice
+              sign
+              text</p>
+            <form method="post">
+              <input type="hidden" name="autostarttoken" th:value="${autostarttoken}"
+                     value="autostartToken">
+              <fieldset class="form-group">
+                <label>Custom name</label>
+                <input type="text" name="firstName" value="Firstname" class="form-control"/>
+                <input type="text" name="lastName" value="Lastname" class="form-control"/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label>Action</label>
+                <select name="action" class="form-control">
+                  <option th:each="action : ${actions}" th:value="${action.name}"
+                          th:selected="${action.selected}" th:text="${action.text}">Sign
+                  </option>
+                </select>
+              </fieldset>
+              <div class="text-center">
+                <button class="btn btn-success" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -24,18 +24,18 @@
     <div class="inner">
       <h3 class="masthead-brand">MockID</h3>
       <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="#">Active sessions</a>
+        <a class="nav-link active" href="/h/">Session</a>
       </nav>
     </div>
   </header>
 
   <main role="main" class="inner cover">
-    <div class="container">
-      <a class="row" th:each="order : ${orders}" href="client" th:href="@{client(autostarttoken=${order.autostarttoken})}">
-        <div class="col" th:text="${order.type}">SIGN</div>
-        <div class="col" th:text="${order.personalNumber}">19121212-1212</div>
-        <div class="col" th:text="${order.status}">pending</div>
-        <div class="col" th:text="${order.hintCode}">started</div>
+    <div class="container bg-info  rounded">
+      <a class="row justify-content-center" th:each="order : ${orders}" href="client" th:href="@{client(autostarttoken=${order.autostarttoken})}">
+        <div class="col text-dark" th:text="${order.type}">SIGN</div>
+        <div class="col text-dark" th:text="${order.personalNumber}">19121212-1212</div>
+        <div class="col text-dark" th:text="${order.status}">pending</div>
+        <div class="col text-dark" th:text="${order.hintCode}">started</div>
       </a>
     </div>
   </main>
