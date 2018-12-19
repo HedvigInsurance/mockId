@@ -1,0 +1,17 @@
+language: java
+jdk: openjdk10
+sudo: required
+services:
+  - docker
+after_success:
+  - bin/docker_push.sh
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  bundler: true
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+notifications:
+  email: false
